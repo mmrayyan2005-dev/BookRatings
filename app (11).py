@@ -31,14 +31,13 @@ st.markdown("""
 # ── Load artifacts ──────────────────────────────────────────────
 @st.cache_resource
 def load_artifacts():
-    base = "model_artifacts"
     return (
-        joblib.load(f"{base}/best_model.joblib"),
-        joblib.load(f"{base}/robust_scaler.joblib"),
-        joblib.load(f"{base}/onehot_encoder.joblib"),
-        joblib.load(f"{base}/X_train_columns.joblib"),
-        joblib.load(f"{base}/category_stats.joblib"),
-        joblib.load(f"{base}/genre_enrichment.joblib"),
+        joblib.load("best_model.joblib"),
+        joblib.load("robust_scaler.joblib"),
+        joblib.load("onehot_encoder.joblib"),
+        joblib.load("X_train_columns.joblib"),
+        joblib.load("category_stats.joblib"),
+        joblib.load("genre_enrichment.joblib"),
     )
 
 # ── Scrape book list for autocomplete ───────────────────────────
@@ -311,7 +310,7 @@ if predict_btn:
                 st.dataframe(proba_df, hide_index=True)
 
         except FileNotFoundError:
-            st.error("⚠️ Model artifacts not found. Please run the notebook first to generate `model_artifacts/`.")
+            st.error("⚠️ Model artifacts not found. Make sure all .joblib files are in the root of your repo.")
         except Exception as e:
             st.error(f"Prediction error: {e}")
 
