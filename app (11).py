@@ -7,7 +7,7 @@ import re
 # ── Load artifacts ──────────────────────────────────────────────
 @st.cache_resource
 def load_artifacts():
-    base = "model_artifacts"
+    base = "."
     return (
         joblib.load(f"{base}/best_model.joblib"),
         joblib.load(f"{base}/robust_scaler.joblib"),
